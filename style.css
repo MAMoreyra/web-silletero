@@ -1,241 +1,146 @@
-/* --- 1. CONFIGURACIÓN BASE --- */
-* {
-    box-sizing: border-box;
-}
+@import url('https://googleapis.com');
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-    margin: 0;
-    padding: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: #f0f2f5; 
     color: #333;
-    overflow-x: hidden; /* Evita que el zoom rompa el ancho */
+    overflow-x: hidden;
 }
 
-/* --- 2. HEADER CON LÍNEA NARANJA --- */
 header {
-    background-color: rgb(240, 176, 64);
-    padding: 10px 5%;
-    border-bottom: 8px solid #ed8f2b; /* Línea naranja debajo del header */
+    background: url('rodillo.jpg') no-repeat center center;
+    background-size: cover;
+    /* Bajamos el padding lateral de 5% a 1% para pegar el logo al borde */
+    padding: 20px 1%; 
+    border-bottom: 10px solid #ed8f2b;
+    display: flex;
+    align-items: center;
+    min-height: 160px;
+    position: relative;
 }
 
 .seccion-header-top {
     display: flex;
     align-items: center;
-    max-width: 1100px;
+    width: 100%;
+    /* Ampliamos el máximo para que el logo tenga más aire hacia la izquierda */
+    max-width: 1400px; 
     margin: 0 auto;
-    gap: 20px;
 }
 
 .seccion-header-top img {
-    width: 60px; /* Tamaño controlado del logo */
+    width: 150px;
     height: auto;
     flex-shrink: 0;
+    margin-left: 0; /* Asegura que esté pegado al inicio */
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    z-index: 2;
 }
 
 .seccion-header-top h1 {
-    font-size: clamp(1.2rem, 4vw, 2rem); /* Se adapta al zoom */
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'Sedgwick Ave', cursive;
+    font-size: clamp(1.3rem, 6vw, 2.8rem);
+    color: #1a4a7c;
     margin: 0;
-    text-align: left;
-}
-.header-container img {
-    width: 90px; /* Estaba en 60px, lo subimos a 90px */
-    height: auto;
-    flex-shrink: 0;
+    text-shadow: 2px 2px 0px #ffffff, 4px 4px 10px rgba(0,0,0,0.2);
+    /* Balanceamos el espacio del logo para que el h1 quede centrado respecto a la pantalla */
+    padding-right: 150px; 
 }
 
-/* En Notebook puede ser un poco más grande */
-@media (min-width: 800px) {
-    .header-container img { width: 120px; }
-}
-
-
-/* --- 3. CONTENIDO (MAIN) --- */
 .content {
-    padding: 20px 5%;
     max-width: 1000px;
     margin: 0 auto;
+    padding: 20px 5%;
 }
 
-/* Unificamos tamaño de TODAS las imágenes y videos informativos */
-.seccion-info img, 
-.seccion-info video,
-.intro video {
-    width: 100%;
-    max-width: 400px; /* Tamaño máximo para que no sean gigantes */
-    height: 250px;    /* Altura fija para uniformidad */
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-    margin: 10px auto;
+.seccion-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
 }
+
+.seccion-card h2 {
+    color: #1a4a7c;
+    border-bottom: 3px solid #ed8f2b;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.seccion-card img, .seccion-card video {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto 0;
+}
+
+.box-valores {
+    background-color: #1a4a7c;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border-left: 8px solid #ed8f2b;
+    margin: 20px 0;
+}
+.box-valores h3 { color: #ed8f2b; font-size: 1.8rem; margin-bottom: 10px; text-transform: uppercase; }
+
 
 .carrusel-seccion {
-    position: relative;
-    display: flex;
-    align-items: center;
     background: #222;
     padding: 20px 0;
-    margin: 30px 0;
+    margin: 40px 0;
 }
-
 .track-videos {
     display: flex;
-    overflow-x: auto; /* Permite el scroll horizontal */
-    scroll-snap-type: x mandatory;
+    overflow-x: auto;
     gap: 15px;
-    padding: 0 10px;
-    width: 100%;
-    scrollbar-width: thin; /* Para Firefox */
+    padding: 0 15px;
+    scroll-snap-type: x mandatory;
 }
 
-/* Línea naranja del scroll (Barra inferior) */
-.track-videos::-webkit-scrollbar {
-    height: 8px;
-}
-.track-videos::-webkit-scrollbar-thumb {
-    background: #ed8f2b; /* El naranja de tu marca */
-    border-radius: 10px;
-}
+.track-videos::-webkit-scrollbar { height: 10px; }
+.track-videos::-webkit-scrollbar-track { background: #333; border-radius: 10px; }
+.track-videos::-webkit-scrollbar-thumb { background: #ed8f2b; border-radius: 10px; border: 2px solid #333; }
 
 .track-videos video {
-    flex: 0 0 90%; /* Un video casi pantalla completa */
+    flex: 0 0 85%;
     height: 350px;
     object-fit: cover;
-    background: #000;
     border-radius: 12px;
     scroll-snap-align: center;
 }
 
-/* Flechas indicadoras (Visuales) */
-.flecha-indicador {
-    color: #ed8f2b;
-    font-size: 2rem;
-    padding: 10px;
-    cursor: pointer;
-    user-select: none;
-    z-index: 10;
-}
-
-@media (min-width: 800px) {
-    .track-videos video {
-        flex: 0 0 45%; /* Dos videos por vez en PC */
-    }
-}
-
-
-/* --- 5. FOOTER CON LÍNEA Y ICONOS CHICOS --- */
 footer {
     background-color: #333;
     color: white;
-    padding: 20px 5%;
-    border-top: 8px solid #ed8f2b; /* Línea naranja arriba del footer */
+    padding: 30px 5%;
+    border-top: 8px solid #ed8f2b;
     text-align: center;
 }
-
 .contacto-item {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     margin-bottom: 10px;
-    flex-wrap: wrap; /* Para que no se corte en pantallas mini */
 }
+.contacto-item img { width: 20px; height: 20px; }
+.contacto-item a { color: white; text-decoration: none; }
+.icono-blanco { filter: brightness(0) invert(1); }
+.copyright { margin-top: 20px; font-size: 0.8rem; border-top: 1px solid #555; padding-top: 10px; }
 
-.contacto-item img {
-    width: 20px; /* Iconos chicos como antes */
-    height: 20px;
-    flex-shrink: 0;
+/* --- AJUSTES CELULAR --- */
+@media (max-width: 768px) {
+    header { padding: 10px 1%; min-height: 110px; }
+    .seccion-header-top img { width: 95px; }
+    .seccion-header-top h1 { padding-right: 95px; font-size: 1.4rem; }
 }
-
-.copyright {
-    margin-top: 20px;
-    font-size: 0.8rem;
-    opacity: 0.8;
-    border-top: 1px solid #555;
-    padding-top: 10px;
-}
-
-/* CONTENEDOR DE BOTONES */
-.footer-botones {
-    display: flex;
-    flex-wrap: wrap; /* Para que se acomoden en el celular */
-    justify-content: center;
-    gap: 15px;
-    max-width: 900px;
-    margin: 0 auto 20px;
-}
-
-/* ESTILO DEL BOTÓN NARANJA */
-.btn-contacto {
-    display: flex;
-    align-items: center;
-    background-color: #ed8f2b; /* Naranja fuerte */
-    color: white !important;
-    text-decoration: none;
-    padding: 12px 20px;
-    border-radius: 50px; /* Bordes redondeados */
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: transform 0.2s, background-color 0.2s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-    min-width: 200px; /* Para que todos tengan un tamaño similar */
-    justify-content: center;
-}
-
-/* EFECTO AL PASAR EL MOUSE (O TOCAR) */
-.btn-contacto:hover {
-    background-color: #f2a34e;
-    transform: translateY(-3px); /* Se eleva un poquito */
-}
-
-.btn-contacto img {
-    width: 22px;
-    height: 22px;
-    margin-right: 10px;
-}
-
-/* COPYRIGHT AJUSTE */
-.copyright {
-    color: #ccc;
-    font-size: 0.8rem;
-    margin-top: 30px;
-    border-top: 1px solid #444;
-    padding-top: 15px;
-    width: 100%;
-}
-
-/* Esto fuerza a que el icono de email (y cualquier otro con esta clase) sea blanco */
-img.icono-blanco {
-    filter: brightness(0) invert(1) !important;
-    -webkit-filter: brightness(0) invert(1) !important; /* Para iPhone/Safari */
-    opacity: 1 !important;
-}
-
-
-
-
-/* --- 6. AJUSTES PARA PANTALLAS GRANDES --- */
-@media (min-width: 768px) {
-    .seccion-info {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-        margin-bottom: 40px;
-    }
-    
-    .seccion-info div {
-        flex: 1;
-    }
-
-    .seccion-info img, 
-    .seccion-info video {
-        flex: 0 0 350px;
-        margin: 0;
-    }
-
-    .track-videos video {
-        flex: 0 0 45%; /* Se ven dos videos a la vez en PC */
-    }
-}
-
