@@ -1,101 +1,98 @@
-/* --- 1. RESET Y BASE --- */
+/* --- 1. CONFIGURACIÓN BASE --- */
 * {
-    box-sizing: border-box; /* Evita que el zoom rompa el diseño */
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    line-height: 1.5;
-    overflow-x: hidden; /* Evita el scroll lateral molesto en celulares */
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden; /* Evita que el zoom rompa el ancho */
 }
 
-/* --- 2. HEADER (Logo y Título) --- */
+/* --- 2. HEADER CON LÍNEA NARANJA --- */
 header {
     background-color: rgb(240, 176, 64);
-    padding: 10px 15px;
-    width: 100%;
+    padding: 10px 5%;
+    border-bottom: 8px solid #ed8f2b; /* Línea naranja debajo del header */
 }
 
 .seccion-header-top {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Logo a la izquierda */
-    gap: 15px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
+    gap: 20px;
 }
 
 .seccion-header-top img {
-    width: 60px; /* Tamaño más chico para celular */
+    width: 60px; /* Tamaño controlado del logo */
     height: auto;
+    flex-shrink: 0;
 }
 
 .seccion-header-top h1 {
-    font-size: 1.2rem; /* Tamaño adaptable */
+    font-size: clamp(1.2rem, 4vw, 2rem); /* Se adapta al zoom */
     margin: 0;
-    color: #333;
+    text-align: left;
 }
 
-/* --- 3. CONTENIDO PRINCIPAL --- */
+/* --- 3. CONTENIDO (MAIN) --- */
 .content {
-    padding: 20px 5%; /* Margen lateral achicado como pediste */
+    padding: 20px 5%;
     max-width: 1000px;
     margin: 0 auto;
 }
 
-h1, h2 {
-    color: #333;
-    word-wrap: break-word;
-}
-
-p {
-    font-size: 1rem;
-    text-align: justify;
-}
-
-/* --- 4. SECCIONES CON FOTO (Misión, Visión, etc.) --- */
-.seccion-info {
-    display: flex;
-    flex-direction: column; /* En celu: uno abajo del otro */
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.seccion-info img {
-    width: 100%; /* Ocupa todo el ancho en celu */
-    max-height: 250px;
+/* Unificamos tamaño de TODAS las imágenes y videos informativos */
+.seccion-info img, 
+.seccion-info video,
+.intro video {
+    width: 100%;
+    max-width: 400px; /* Tamaño máximo para que no sean gigantes */
+    height: 250px;    /* Altura fija para uniformidad */
     object-fit: cover;
     border-radius: 8px;
+    display: block;
+    margin: 10px auto;
 }
 
-/* --- 5. CARRUSEL DE VIDEOS --- */
+/* --- 4. CARRUSEL HORIZONTAL (No se rompe con zoom) --- */
 .carrusel-videos {
+    width: 100%;
+    background: #f4f4f4;
+    padding: 20px 0;
+    margin: 30px 0;
+    overflow: hidden;
+}
+
+.track-videos {
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 10px;
-    padding: 20px 0;
+    gap: 15px;
+    padding: 0 15px;
+    -webkit-overflow-scrolling: touch;
 }
 
-.carrusel-videos video {
-    flex: 0 0 100%; /* Un video a la vez en celu */
-    width: 100%;
-    height: 300px; /* Altura controlada */
+.track-videos video {
+    flex: 0 0 85%; /* En móvil ocupa casi todo el ancho */
+    max-width: 500px; /* En PC no se hace gigante */
+    height: 300px;
     background: #000;
     border-radius: 10px;
     scroll-snap-align: center;
 }
 
-/* --- 6. FOOTER CON BARRA NARANJA --- */
+/* --- 5. FOOTER CON LÍNEA Y ICONOS CHICOS --- */
 footer {
-    background-color: #ed8f2b; /* Naranja fuerte */
+    background-color: #333;
     color: white;
-    padding: 30px 5%;
-    margin-top: 40px;
+    padding: 20px 5%;
+    border-top: 8px solid #ed8f2b; /* Línea naranja arriba del footer */
     text-align: center;
-    border-top: 8px solid #d37a1f; /* Barra inferior/borde resaltado */
 }
 
 .contacto-item {
@@ -103,32 +100,45 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 15px;
-    font-size: 0.9rem;
+    margin-bottom: 10px;
+    flex-wrap: wrap; /* Para que no se corte en pantallas mini */
 }
 
 .contacto-item img {
-    width: 20px;
+    width: 20px; /* Iconos chicos como antes */
     height: 20px;
+    flex-shrink: 0;
 }
 
-/* --- 7. AJUSTES PARA NOTEBOOK (Pantallas grandes) --- */
+.copyright {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+    border-top: 1px solid #555;
+    padding-top: 10px;
+}
+
+/* --- 6. AJUSTES PARA PANTALLAS GRANDES --- */
 @media (min-width: 768px) {
-    .seccion-header-top img {
-        width: 100px; /* Logo más grande en PC */
-    }
-    .seccion-header-top h1 {
-        font-size: 2rem;
-    }
     .seccion-info {
-        flex-direction: row; /* En PC: Foto al lado del texto */
+        display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 30px;
+        margin-bottom: 40px;
     }
-    .seccion-info img {
-        width: 300px; /* Tamaño fijo en PC */
+    
+    .seccion-info div {
+        flex: 1;
     }
-    .carrusel-videos video {
-        flex: 0 0 60%; /* Se ven un poco los costados del siguiente */
+
+    .seccion-info img, 
+    .seccion-info video {
+        flex: 0 0 350px;
+        margin: 0;
+    }
+
+    .track-videos video {
+        flex: 0 0 45%; /* Se ven dos videos a la vez en PC */
     }
 }
+
