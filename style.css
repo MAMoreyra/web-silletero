@@ -38,6 +38,17 @@ header {
     margin: 0;
     text-align: left;
 }
+.header-container img {
+    width: 90px; /* Estaba en 60px, lo subimos a 90px */
+    height: auto;
+    flex-shrink: 0;
+}
+
+/* En Notebook puede ser un poco más grande */
+@media (min-width: 800px) {
+    .header-container img { width: 120px; }
+}
+
 
 /* --- 3. CONTENIDO (MAIN) --- */
 .content {
@@ -59,32 +70,59 @@ header {
     margin: 10px auto;
 }
 
-/* --- 4. CARRUSEL HORIZONTAL (No se rompe con zoom) --- */
-.carrusel-videos {
-    width: 100%;
-    background: #f4f4f4;
+.carrusel-seccion {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #222;
     padding: 20px 0;
     margin: 30px 0;
-    overflow: hidden;
 }
 
 .track-videos {
     display: flex;
-    overflow-x: auto;
+    overflow-x: auto; /* Permite el scroll horizontal */
     scroll-snap-type: x mandatory;
     gap: 15px;
-    padding: 0 15px;
-    -webkit-overflow-scrolling: touch;
+    padding: 0 10px;
+    width: 100%;
+    scrollbar-width: thin; /* Para Firefox */
+}
+
+/* Línea naranja del scroll (Barra inferior) */
+.track-videos::-webkit-scrollbar {
+    height: 8px;
+}
+.track-videos::-webkit-scrollbar-thumb {
+    background: #ed8f2b; /* El naranja de tu marca */
+    border-radius: 10px;
 }
 
 .track-videos video {
-    flex: 0 0 85%; /* En móvil ocupa casi todo el ancho */
-    max-width: 500px; /* En PC no se hace gigante */
-    height: 300px;
+    flex: 0 0 90%; /* Un video casi pantalla completa */
+    height: 350px;
+    object-fit: cover;
     background: #000;
-    border-radius: 10px;
+    border-radius: 12px;
     scroll-snap-align: center;
 }
+
+/* Flechas indicadoras (Visuales) */
+.flecha-indicador {
+    color: #ed8f2b;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+}
+
+@media (min-width: 800px) {
+    .track-videos video {
+        flex: 0 0 45%; /* Dos videos por vez en PC */
+    }
+}
+
 
 /* --- 5. FOOTER CON LÍNEA Y ICONOS CHICOS --- */
 footer {
@@ -117,6 +155,65 @@ footer {
     border-top: 1px solid #555;
     padding-top: 10px;
 }
+
+/* CONTENEDOR DE BOTONES */
+.footer-botones {
+    display: flex;
+    flex-wrap: wrap; /* Para que se acomoden en el celular */
+    justify-content: center;
+    gap: 15px;
+    max-width: 900px;
+    margin: 0 auto 20px;
+}
+
+/* ESTILO DEL BOTÓN NARANJA */
+.btn-contacto {
+    display: flex;
+    align-items: center;
+    background-color: #ed8f2b; /* Naranja fuerte */
+    color: white !important;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 50px; /* Bordes redondeados */
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    min-width: 200px; /* Para que todos tengan un tamaño similar */
+    justify-content: center;
+}
+
+/* EFECTO AL PASAR EL MOUSE (O TOCAR) */
+.btn-contacto:hover {
+    background-color: #f2a34e;
+    transform: translateY(-3px); /* Se eleva un poquito */
+}
+
+.btn-contacto img {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+}
+
+/* COPYRIGHT AJUSTE */
+.copyright {
+    color: #ccc;
+    font-size: 0.8rem;
+    margin-top: 30px;
+    border-top: 1px solid #444;
+    padding-top: 15px;
+    width: 100%;
+}
+
+/* Esto fuerza a que el icono de email (y cualquier otro con esta clase) sea blanco */
+img.icono-blanco {
+    filter: brightness(0) invert(1) !important;
+    -webkit-filter: brightness(0) invert(1) !important; /* Para iPhone/Safari */
+    opacity: 1 !important;
+}
+
+
+
 
 /* --- 6. AJUSTES PARA PANTALLAS GRANDES --- */
 @media (min-width: 768px) {

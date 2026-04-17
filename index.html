@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pintura en Altura Silleteros</title>
     <!-- Asegurate que el nombre del archivo CSS coincida aquí -->
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -58,17 +58,21 @@
 
         <section class="valores" style="text-align: center; margin: 40px 0;">
             <h3>Valores</h3>
-            <p>Trabajamos con pasión, dedicación y entusiasmo, también con conciencia e integridad; la más alta calidad y seguridad.</p>
+            <p>Trabajamos con pasión, dedicación y entusiasmo, también con conciencia e integridad;</p><p>brindando la más alta calidad y seguridad.</p>
         </section>
 
-        <!-- Carrusel de Videos de Trabajos -->
-        <div class="carrusel-videos">
-            <video src="Video antes y después.mp4" controls playsinline></video>
-            <video src="Video arreglo de tanque de agua.mp4" controls playsinline></video>
-            <video src="Video herreria.mp4" controls playsinline></video>
-            <video src="Video impermeabilización de terraza.mp4" controls playsinline></video>
-            <video src="Video pintura interior.mp4" controls playsinline></video>
-        </div>
+<div class="carrusel-seccion">
+    <div class="flecha-indicador izquierda">❮</div>
+    <div class="track-videos">
+        <video src="Video antes y después.mp4" controls playsinline></video>
+        <video src="Video arreglo de tanque de agua.mp4" controls playsinline></video>
+        <video src="Video herreria.mp4" controls playsinline></video>
+        <video src="Video impermeabilización de terraza.mp4" controls playsinline></video>
+        <video src="Video pintura interior.mp4" controls playsinline></video>
+    </div>
+    <div class="flecha-indicador derecha">❯</div>
+</div>
+
 
         <section class="servicios">
             <h1 style="text-align: center; margin-top: 50px;">Servicio</h1>
@@ -125,22 +129,36 @@
 <footer>
     <div class="contacto-item">
         <img src="whatsapp.png" alt="WA">
-        <span>11-3102-9101 (Enrique) / 11-5831-0840 (Ricardo)</span>
+        <!-- Enlace a Enrique -->
+        <a href="https://wa.me/+5491131029101" target="_blank" class="btn-contacto">
+            11-3102-9101 (Enrique)
+        </a>
+        <span> / </span>
+        <!-- Enlace a Ricardo -->
+        <a href="https://wa.me/+5491158310840" target="_blank" class="btn-contacto">
+            11-5831-0840 (Ricardo)
+        </a>
     </div>
+
     <div class="contacto-item">
         <img src="instagram.png" alt="IG">
-        <span>@pinturaenalturasilleteros</span>
+        <a href="https://instagram.com/pinturaenalturasilleteros" target="_blank" class="btn-contacto">
+            @pinturaenalturasilleteros
+        </a>
     </div>
+
     <div class="contacto-item">
-        <img src="correo.png" alt="Mail">
-        <span>silleterosenaltura@gmail.com</span>
+        <img src="correo.png" alt="Mail" class="icono-blanco">
+        <a href="mailto:silleterosenaltura@gmail.com" class="btn-contacto">
+            silleterosenaltura@gmail.com
+        </a>
     </div>
-    
-    <!-- Nueva línea para el copyright -->
+
     <div class="copyright">
         &copy; 2026 Pintura en Altura Silleteros. Todos los derechos reservados.
     </div>
 </footer>
+
 
 
 </body>
