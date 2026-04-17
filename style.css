@@ -1,187 +1,134 @@
-a {
-    text-decoration: none;
+/* --- 1. RESET Y BASE --- */
+* {
+    box-sizing: border-box; /* Evita que el zoom rompa el diseño */
 }
 
 body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
+    overflow-x: hidden; /* Evita el scroll lateral molesto en celulares */
 }
 
-/* Header */
-.header {
-    background-color: #ffffff;
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom: 3px solid #f39c12;
-}
-
-.logo img {
-    max-width: 270px;
-    height: auto;
-    margin-bottom: 8px;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 26px;
-    color: #1a1a1a;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Contenedor Principal */
-.content {
-    max-width: 900px;
-    margin: 30px auto;
-    background: #ffffff;
-    padding: 40px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-    border-radius: 10px;
-}
-
-h1 {
-    color: #2c3e50;
-    font-size: 28px;
-    margin-bottom: 30px;
-}
-
-h2 {
-    color: #2c3e50;
-    border-left: 5px solid #f39c12;
-    padding-left: 15px;
-    margin-top: 40px;
-}
-
-.img-fluida, video {
+/* --- 2. HEADER (Logo y Título) --- */
+header {
+    background-color: rgb(240, 176, 64);
+    padding: 10px 15px;
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 20px 0;
-    display: block;
 }
 
-.video-container {
+.seccion-header-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Logo a la izquierda */
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.seccion-header-top img {
+    width: 60px; /* Tamaño más chico para celular */
+    height: auto;
+}
+
+.seccion-header-top h1 {
+    font-size: 1.2rem; /* Tamaño adaptable */
+    margin: 0;
+    color: #333;
+}
+
+/* --- 3. CONTENIDO PRINCIPAL --- */
+.content {
+    padding: 20px 5%; /* Margen lateral achicado como pediste */
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1, h2 {
+    color: #333;
+    word-wrap: break-word;
+}
+
+p {
+    font-size: 1rem;
+    text-align: justify;
+}
+
+/* --- 4. SECCIONES CON FOTO (Misión, Visión, etc.) --- */
+.seccion-info {
+    display: flex;
+    flex-direction: column; /* En celu: uno abajo del otro */
+    gap: 15px;
     margin-top: 30px;
 }
 
-hr {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, transparent, #ccc, transparent);
-    margin: 50px 0;
-}
-
-.box {
-    margin-bottom: 40px;
-}
-
-.valores {
-    background-color: #2c3e50;
-    color: #ffffff;
-    padding: 30px;
+.seccion-info img {
+    width: 100%; /* Ocupa todo el ancho en celu */
+    max-height: 250px;
+    object-fit: cover;
     border-radius: 8px;
-    text-align: center;
-    margin-top: 40px;
 }
 
-.valores h3 {
-    margin-top: 0;
-    color: #f39c12;
-    text-transform: uppercase;
+/* --- 5. CARRUSEL DE VIDEOS --- */
+.carrusel-videos {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 10px;
+    padding: 20px 0;
 }
 
-.titulo-servicio {
-    text-align: center;
-    border: none;
-    padding: 0;
-    margin-top: 50px;
-    font-size: 30px;
+.carrusel-videos video {
+    flex: 0 0 100%; /* Un video a la vez en celu */
+    width: 100%;
+    height: 300px; /* Altura controlada */
+    background: #000;
+    border-radius: 10px;
+    scroll-snap-align: center;
 }
 
+/* --- 6. FOOTER CON BARRA NARANJA --- */
 footer {
-  background-color: #ffffff;
-  padding: 20px;
-  border-top: 3px solid #f39c12;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: center;   /* Centra horizontalmente */
-  align-items: center;
-  gap: 25px;                 /* Espacio entre cada contacto-item */
-  flex-wrap: wrap;           /* Si no entra en pantallas pequeñas, se acomoda */
-  margin-bottom: 15px;
+    background-color: #ed8f2b; /* Naranja fuerte */
+    color: white;
+    padding: 30px 5%;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 8px solid #d37a1f; /* Barra inferior/borde resaltado */
 }
 
 .contacto-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;                  /* Espacio entre icono y link */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
 }
 
 .contacto-item img {
-  width: 24px;
-  height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
-.contacto-item a {
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-}
-
-.contacto-item a:hover {
-  text-decoration: underline;
-}
-
-.footer-copy {
-  text-align: center;        /* Centra el texto */
-  color: #333;
-  font-size: 14px;
-}
-
-.carrusel-videos {
-    width: 100%;
-    background-color: #000;
-    overflow: hidden;
-    margin: 20px 0;
-}
-
-.track-videos {
-    display: flex;
-    overflow-x: auto;          /* Permite deslizar al siguiente video */
-    scroll-snap-type: x mandatory; /* Hace que el video encaje perfecto al centro */
-    scroll-behavior: smooth;
-    gap: 0;
-}
-
-.track-videos video {
-    flex: 0 0 100%;            /* Cada video ocupa todo el ancho */
-    width: 100%;
-    height: 500px;             /* Ajustá la altura a tu gusto */
-    object-fit: cover;         /* Evita que el video se deforme */
-    scroll-snap-align: center; /* Alinea el video al centro al deslizar */
-}
-
-/* Estilo para la barra de desplazamiento (Naranja como tu marca) */
-.track-videos::-webkit-scrollbar {
-    height: 8px;
-}
-.track-videos::-webkit-scrollbar-thumb {
-    background: rgb(240, 176, 64);
-    border-radius: 10px;
-}
-
-/* Responsivo para celulares */
-@media (max-width: 600px) {
-    .content {
-        padding: 20px;
-        margin: 10px;
+/* --- 7. AJUSTES PARA NOTEBOOK (Pantallas grandes) --- */
+@media (min-width: 768px) {
+    .seccion-header-top img {
+        width: 100px; /* Logo más grande en PC */
+    }
+    .seccion-header-top h1 {
+        font-size: 2rem;
+    }
+    .seccion-info {
+        flex-direction: row; /* En PC: Foto al lado del texto */
+        align-items: center;
+        justify-content: space-between;
+    }
+    .seccion-info img {
+        width: 300px; /* Tamaño fijo en PC */
+    }
+    .carrusel-videos video {
+        flex: 0 0 60%; /* Se ven un poco los costados del siguiente */
     }
 }
